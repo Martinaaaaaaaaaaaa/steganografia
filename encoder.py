@@ -5,7 +5,7 @@ immagine = Image.open("immagine.png")
 immagine = immagine.convert('RGB')
 pixels = immagine.load()
 
-messaggio = "Let's try a longer message because I can't see shit"
+messaggio = "Cagiva"
 #messaggio = input("inserire il messaggio da inserire nell'immagine: ")
 
 #come funzia: ord piglia l'ASCII di ogni carattere, format lo converte in numero a 8 bit, join congiunge in una stringa
@@ -28,6 +28,7 @@ try:
                 colors = [r, g, b] #valori rgb del pixel in questione
                 
                 for i in range(3): #andiamo a modificare tutti e 3 i valori rgb del pixel
+                    if puntatore < messaggio_len:
                         binary = format(colors[i], '08b') #conversione in binario del valore colore
                         binary = binary[:-1] + messaggio_bin[puntatore] #cambiamo ultimo bit con il nostro super segreto bit del messaggio super ultra segreto
                         colors[i] = int(binary, 2) #riconversione in decimale
