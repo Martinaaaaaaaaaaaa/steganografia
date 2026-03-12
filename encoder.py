@@ -1,6 +1,7 @@
 from PIL import Image
 
 immagine = Image.open("immagine.png")
+#immagine = input("Inserire la path")
 immagine = immagine.convert('RGB')
 pixels = immagine.load()
 
