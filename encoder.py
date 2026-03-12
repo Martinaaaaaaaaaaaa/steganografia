@@ -28,11 +28,13 @@ try:
             for x in range(largh):
                 if puntatore < messaggio_len:
                     r, g, b = pixels[x, y]
-                    r_bin = format(r, '08b')  # Convert red component to binary
-                    r_bin = r_bin[:-1] + messaggio_bin[puntatore]  # Replace the LSB with the message bit
-                    r = int(r_bin, 2)
-                    pixels[x, y] = (r, g, b)
-                    puntatore += 1
+                    for color in (r, g, b):
+                        binary = format(color, '08b')  # Convert color component to binary
+                        lastBit = binary[:-1] 
+                        binary = (lastBit AND 0xFE) OR messaggio_bin[puntatore]  # Replace the LSB with the message bit
+                        color = int(binary, 2)  # Convert back to integer
+                        pixels[x, y] = (r, g, b)
+                        puntatore += 1
                 else: #fine loop
                     finito = True        
 except ValueError as e:
@@ -44,8 +46,8 @@ immagine.save(path_salvataggio)
 print(f"Messaggio codificato e salvato a {path_salvataggio}")
 
 #testsssss
-'''print(messaggio_bit)
-print(immagine.format, immagine.size, immagine.mode)'''
+'''print(messaggio_bin)
+print(immagine.format, immagine.size, immagine.mode)
 immagine.show()
 immagine_con_cod = Image.open("immagine_con_codifica.png")
-immagine_con_cod.show()
+immagine_con_cod.show()'''
