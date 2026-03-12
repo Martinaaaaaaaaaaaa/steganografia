@@ -21,6 +21,8 @@ if messaggio_len > (largh*alt):
 #tentiamo di fare encoding
 try:
     puntatore = 0
+    finito = False
+    #altra roba loop
     for y in range(alt):
         for x in range(largh):
             if puntatore < messaggio_len:
