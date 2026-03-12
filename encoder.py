@@ -29,13 +29,12 @@ try:
                 r = int(r_bin, 2)
                 pixels[x, y] = (r, g, b)
                 puntatore += 1
-            else:
+            else: #fine loop
                 path_salvataggio = "immagine_con_codifica.png"
                 immagine.save(path_salvataggio)
                 print(f"Messaggio codificato e salvato a {path_salvataggio}")
-                
-            
-            
+                break
+              
 except ValueError as e:
     print(e)
 
