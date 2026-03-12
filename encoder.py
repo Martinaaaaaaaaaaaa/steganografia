@@ -30,9 +30,9 @@ try:
                     r, g, b = pixels[x, y]
                     for color in (r, g, b):
                         binary = format(color, '08b')  # Convert color component to binary
-                        lastBit = binary[:-1] 
-                        binary = (lastBit AND 0xFE) OR messaggio_bin[puntatore]  # Replace the LSB with the message bit
-                        color = int(binary, 2)  # Convert back to integer
+                        lastByte = binary[:-1] 
+                        binary = (lastByte and 0xFE) or messaggio_bin[puntatore]  # Replace the LSB with the message bit
+                        #color = int(binary, 2)  # no need to Convert back to integer
                         pixels[x, y] = (r, g, b)
                         puntatore += 1
                 else: #fine loop
