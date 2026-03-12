@@ -22,25 +22,26 @@ if messaggio_len > (largh*alt):
 try:
     puntatore = 0
     finito = False
-    #altra roba loop
-    for y in range(alt):
-        for x in range(largh):
-            if puntatore < messaggio_len:
-                r, g, b = pixels[x, y]
-                r_bin = format(r, '08b')  # Convert red component to binary
-                r_bin = r_bin[:-1] + messaggio_bin[puntatore]  # Replace the LSB with the message bit
-                r = int(r_bin, 2)
-                pixels[x, y] = (r, g, b)
-                puntatore += 1
-            else: #fine loop
-                path_salvataggio = "immagine_con_codifica.png"
-                immagine.save(path_salvataggio)
-                print(f"Messaggio codificato e salvato a {path_salvataggio}")
-                break
-              
+    
+    while not finito:
+        for y in range(alt):
+            for x in range(largh):
+                if puntatore < messaggio_len:
+                    r, g, b = pixels[x, y]
+                    r_bin = format(r, '08b')  # Convert red component to binary
+                    r_bin = r_bin[:-1] + messaggio_bin[puntatore]  # Replace the LSB with the message bit
+                    r = int(r_bin, 2)
+                    pixels[x, y] = (r, g, b)
+                    puntatore += 1
+                else: #fine loop
+                    finito = True        
 except ValueError as e:
     print(e)
 
+#salvataggio nuova immagine
+path_salvataggio = "immagine_con_codifica.png"
+immagine.save(path_salvataggio)
+print(f"Messaggio codificato e salvato a {path_salvataggio}")
 
 #testsssss
 '''print(messaggio_bit)
