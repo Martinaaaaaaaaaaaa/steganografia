@@ -33,7 +33,9 @@ try:
                 path_salvataggio = "immagine_con_codifica.png"
                 immagine.save(path_salvataggio)
                 print(f"Messaggio codificato e salvato a {path_salvataggio}")
-                exit
+                
+            
+            
 except ValueError as e:
     print(e)
 
