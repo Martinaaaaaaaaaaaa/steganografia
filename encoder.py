@@ -21,24 +21,21 @@ if messaggio_len > (largh*alt):
 #tentiamo di fare encoding
 try:
     puntatore = 0
-    finito = False
     
-    while not finito:
-        for y in range(alt):
-            for x in range(largh):
-                if puntatore < messaggio_len:
-                    r, g, b = pixels[x, y]
-                    for color in (r, g, b):
-                        print(color)
-                        binary = format(color, '08b')  # Convert color component to binary
-                        lastByte = binary[:-1] 
-                        binary = (lastByte and 0xFE) or messaggio_bin[puntatore]  # Replace the LSB with the message bit
-                        print(binary)
-                        #color = int(binary, 2)  # no need to Convert back to integer
-                        pixels[x, y] = (r, g, b)
+    for y in range(alt):
+        for x in range(largh):
+            if puntatore < messaggio_len:
+                r, g, b = pixels[x, y]
+                colors = [r, g, b]
+
+                for i in range(3):
+                    if puntatore < messaggio_len:
+                        binary = format(colors[i], '08b')
+                        binary = binary[:-1] + messaggio_bin[puntatore]
+                        colors[i] = int(binary, 2)
                         puntatore += 1
-                else: #fine loop
-                    finito = True        
+                
+                pixels[x, y] = tuple(colors)
 except ValueError as e:
     print(e)
 
