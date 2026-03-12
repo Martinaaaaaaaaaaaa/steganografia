@@ -21,18 +21,16 @@ if messaggio_len > (largh*alt):
 #tentiamo di fare encoding
 try:
     puntatore = 0
-    
-    for y in range(alt):
-        for x in range(largh):
-            if puntatore < messaggio_len:
-                r, g, b = pixels[x, y]
-                colors = [r, g, b]
-
-                for i in range(3):
-                    if puntatore < messaggio_len:
-                        binary = format(colors[i], '08b')
-                        binary = binary[:-1] + messaggio_bin[puntatore]
-                        colors[i] = int(binary, 2)
+    for y in range(alt): #scorrimento righe
+        for x in range(largh): #scorrimento colonne
+            if puntatore < messaggio_len: 
+                r, g, b = pixels[x, y] 
+                colors = [r, g, b] #valori rgb del pixel in questione
+                
+                for i in range(3): #andiamo a modificare tutti e 3 i valori rgb del pixel
+                        binary = format(colors[i], '08b') #conversione in binario del valore colore
+                        binary = binary[:-1] + messaggio_bin[puntatore] #cambiamo ultimo bit con il nostro super segreto bit del messaggio super ultra segreto
+                        colors[i] = int(binary, 2) #riconversione in decimale
                         puntatore += 1
                 
                 pixels[x, y] = tuple(colors)
