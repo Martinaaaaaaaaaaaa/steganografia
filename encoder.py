@@ -48,3 +48,4 @@ print(f"Messaggio codificato e salvato a {path_salvataggio}")
 print(immagine.format, immagine.size, immagine.mode)'''
 immagine.show()
 immagine_con_cod = Image.open("immagine_con_codifica.png")
+immagine_con_cod.show()
