@@ -5,7 +5,7 @@ immagine = Image.open("immagine.png")
 immagine = immagine.convert('RGB')
 pixels = immagine.load()
 
-messaggio = "Cagiva"
+messaggio = "Let's try a longer message because I can't see shit"
 #messaggio = input("inserire il messaggio da inserire nell'immagine: ")
 
 #come funzia: ord piglia l'ASCII di ogni carattere, format lo converte in numero a 8 bit, join congiunge in una stringa
@@ -29,9 +29,11 @@ try:
                 if puntatore < messaggio_len:
                     r, g, b = pixels[x, y]
                     for color in (r, g, b):
+                        print(color)
                         binary = format(color, '08b')  # Convert color component to binary
                         lastByte = binary[:-1] 
                         binary = (lastByte and 0xFE) or messaggio_bin[puntatore]  # Replace the LSB with the message bit
+                        print(binary)
                         #color = int(binary, 2)  # no need to Convert back to integer
                         pixels[x, y] = (r, g, b)
                         puntatore += 1
